@@ -1,12 +1,14 @@
 import { Link, useLocation } from 'react-router-dom'
-import reactLogo from '@src/assets/react.svg'
-import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup'
 import { useMenuItems } from '@src/composables/useMenuItems'
+import { FirebaseContext } from '@src/context/FirebaseContext'
+import { useContext, useState } from 'react'
 
-export default function SideBar () {
+export default function MenuItems () {
   const { menuItems } = useMenuItems()
-
   const { pathname } = useLocation()
+  const { firestore } = useContext(FirebaseContext)
+
+  console.log({ firestore })
 
   return (
     <ul className='flex flex-col gap-4' >
@@ -17,7 +19,7 @@ export default function SideBar () {
             {section.items.map(it => (
               <li key={it.label} className="py-2 pl-6 pr-8 hover:bg-lightViolet rounded-lg">
                 <Link to={it.link}
-                  className={`flex items-center gap-2  ${pathname === it.link ? 'text-blue-500' : 'text-gray-600'}`}
+                  className={`flex items-center gap-2  ${pathname === it.link ? 'text-indigo-500' : 'text-gray-600'}`}
                 >
                   <i className={`${it.icon}`} />
                   <h3 className='font-medium font-sans text-1rem'>{it.label}</h3>
