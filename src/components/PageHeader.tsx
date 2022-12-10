@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useState, useContext } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useState, useContext, useEffect } from 'react'
 import { useAuth } from '@src/hooks/useAuth'
 import { AuthContext } from '@src/context/AuthContext'
 import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup'
@@ -9,9 +9,14 @@ import MenuItems from '@src/components/MenuItems'
 
 function PageHeader () {
   const navigate = useNavigate()
+  const location = useLocation()
   const { logout } = useAuth()
   const [sidebarVisible, setSidebarVisible] = useState(false)
   const { isAuthenticated } = useContext(AuthContext)
+
+  useEffect(() => {
+    setSidebarVisible(false)
+  }, [location])
 
   const toggleVisible = () => {
     setSidebarVisible(!sidebarVisible)
