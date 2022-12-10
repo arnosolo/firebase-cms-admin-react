@@ -1,14 +1,9 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useMenuItems } from '@src/composables/useMenuItems'
-import { FirebaseContext } from '@src/context/FirebaseContext'
-import { useContext, useState } from 'react'
+import { useMenuItems } from '@src/hooks/useMenuItems'
 
 export default function MenuItems () {
   const { menuItems } = useMenuItems()
   const { pathname } = useLocation()
-  const { firestore } = useContext(FirebaseContext)
-
-  console.log({ firestore })
 
   return (
     <ul className='flex flex-col gap-4' >
