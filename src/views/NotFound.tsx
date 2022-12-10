@@ -1,6 +1,10 @@
+import { NoMatch } from '@src/components/NoMatch'
+
 function NotFound () {
   return (
-    <h1>Page not found</h1>
+    <div className='flex justify-center w-full min-h-screen'>
+      <NoMatch />
+    </div>
   )
 }
 
